@@ -1,3 +1,9 @@
+/*
+  Originally tested using an Arduino Uno R3 (using serial monitor for debugging), the current pin set up
+  is for an Adafruit Trinket 5v, which does not have serial debugging hence why the serial lines are commented
+  out.
+*/
+
 const int sensorPin = A2; // Analogue input pin for LDR
 const int analogOutPin = 1; // Analogue (PWM) output to boost converter 0v in 0v out, 5v in 12v out
 const int pirInputPin = 0;
@@ -5,15 +11,16 @@ const int lightsOnDuration = 180000; // Three minutes
 const int fadeStep = 5;
 const int sensorReadCounterLimit = 5;
 
+//Value to compare against the analogue reading from the LDR
 const int testingThreshold = 800;
-const int darkThreshold = 200;
+const int darkThreshold = 150;
 int effectiveThreshold = darkThreshold;
 
 const int darkInterval = 100; //250;
 const int fadeInterval = 5;
 int currentInterval = darkInterval;
 
-int outputValue = 0; // Variable to hold output to LED strip: 0 = 0v, 255 = 5v (boosted to 12v)
+int outputValue = 0; // Variable to hold PWM output to LED strip: 0 = 0v, 255 = 5v (boosted to 12v)
 int pirState = LOW;  // Variable to hold the incoming state from the PIR
 int sensorValue = 0; // Variable to store the value coming from the LDR sensor
 
